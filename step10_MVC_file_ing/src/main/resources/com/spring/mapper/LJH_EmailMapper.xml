@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+ <mapper namespace="com.spring.mapper.LJH_EmailMapper">
+ 	 	
+ 	 <!-- 모든 메일 출력 -->
+ 	<select id="getAllEmail" resultType="com.spring.dto.Email">
+ 		SELECT 
+			email_id,
+			sender_id,
+			recipient_id,
+			email_subject,
+			body,
+			is_read,
+			is_delete,
+			send_date
+		FROM email
+		WHERE is_delete = 'F'
+ 	</select>
+ 	
+ 	<!-- 메일 상세 정보 출력 -->
+ 	<select id="getEmailbyEmailId" resultType="com.spring.dto.Email">
+ 		SELECT 
+			email_id,
+			sender_id,
+			recipient_id,
+			email_subject,
+			body,
+			is_read,
+			is_delete,
+			send_date
+		FROM email
+		where email_id = #{emailId}
+ 	</select>
+ 	
+ 	<!-- 메일을 읽음 표시로 업데이트 -->
+ 	<update id="updateIsRead" parameterType="_int">
+ 		UPDATE email
+ 		SET is_read = 'T'
+ 		WHERE email_id = #{emailId}
+ 	</update>
+ </mapper>
