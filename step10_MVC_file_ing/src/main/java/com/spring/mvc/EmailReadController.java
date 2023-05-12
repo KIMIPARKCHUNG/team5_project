@@ -28,4 +28,9 @@ public class EmailReadController {
 		return "emailRead";
 	}
 	
+	@RequestMapping(value = "/emailRead2", method = RequestMethod.GET)
+	public String emailList2() {
+		return "emailRead2";
+	}
+	
 }
