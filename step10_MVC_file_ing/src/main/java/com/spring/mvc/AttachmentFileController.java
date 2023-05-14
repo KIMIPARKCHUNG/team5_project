@@ -44,42 +44,42 @@ public class AttachmentFileController {
 	
 
 	
-	@RequestMapping(value = "/download/file/{fileNo}", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<Resource> downloadFile(@PathVariable("fileNo") int fileNo) {
-		System.out.println(fileNo);
-		
-	    /* 1. filNo -> db 해당 파일이 서버에 존재 여부 확
-			 * 2. 		-> 존재 한다면 : file -> resource
-			 * 3. ResponseEntity<Resource>, header의 ContentType, HttpSTATUS.OK
-			 */
-		AttachmentFile attachmentFile= null;
-		Resource resource = null;
-		Path path = null;
-		HttpHeaders headers =null;
-		try {
-			attachmentFile = fileService.getAttachmentFileByFileNo(fileNo);
-			String filePath = attachmentFile.getFilePath();
-			path = Paths.get(filePath+"\\"+attachmentFile.getAttachmentFileName());
-			resource = new InputStreamResource(Files.newInputStream(path));
-			headers = new HttpHeaders();
-			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-			headers.setContentDisposition(ContentDisposition
-														.builder("attachment")
-														.filename(attachmentFile.getAttachmentOriginalFileName())
-														.build());
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-
-		
-		// 
-		
-		
-		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
-		
-	}
+//	@RequestMapping(value = "/download/file/{fileNo}", method = RequestMethod.GET)
+//	public @ResponseBody ResponseEntity<Resource> downloadFile(@PathVariable("fileNo") int fileNo) {
+//		System.out.println(fileNo);
+//		
+//	    /* 1. filNo -> db 해당 파일이 서버에 존재 여부 확
+//			 * 2. 		-> 존재 한다면 : file -> resource
+//			 * 3. ResponseEntity<Resource>, header의 ContentType, HttpSTATUS.OK
+//			 */
+//		AttachmentFile attachmentFile= null;
+//		Resource resource = null;
+//		Path path = null;
+//		HttpHeaders headers =null;
+//		try {
+//			attachmentFile = fileService.getAttachmentFileByFileNo(fileNo);
+//			String filePath = attachmentFile.getFilePath();
+//			path = Paths.get(filePath+"\\"+attachmentFile.getAttachmentFileName());
+//			resource = new InputStreamResource(Files.newInputStream(path));
+//			headers = new HttpHeaders();
+//			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+//			headers.setContentDisposition(ContentDisposition
+//														.builder("attachment")
+//														.filename(attachmentFile.getAttachmentOriginalFileName())
+//														.build());
+//		} catch (Exception e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		
+//
+//		
+//		// 
+//		
+//		
+//		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+//		
+//	}
 	
 
 }

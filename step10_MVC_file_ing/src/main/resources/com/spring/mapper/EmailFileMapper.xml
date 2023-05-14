@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.spring.mapper.EmailFileMapper">
+
+  	<select id="getEmailFileByEmailId" parameterType="_int" resultMap="emailFile">
+ 		SELECT 
+		    file_id,
+			email_id,
+			path,
+			uuid,
+			file_subject,
+			file_size,
+			file_date
+ 		FROM scott.email_file
+ 		WHERE email_id = #{email_id}
+ 	</select>
+ 	
+ 	<resultMap type="com.spring.dto.EmailFile" id="emailFile">
+ 		<result property="file_id" column="file_id"/>
+ 		<result property="email_id" column="email_id"/>
+ 		<result property="path" column="path"/>
+ 		<result property="uuid" column="uuid"/>
+ 		<result property="file_subject" column="file_subject"/>
+ 		<result property="file_size" column="file_size"/>
+ 		<result property="file_date" column="file_date"/>
+ 	</resultMap>
+
+ 		<insert id="insertEmailFile" parameterType="com.spring.dto.EmailFile">
+ 		INSERT INTO scott.email_file
+ 		VALUES (
+			    seq_file_id.NEXTVAL, 
+				#{email_id}, 
+				#{path},
+				#{uuid},
+				#{file_subject},
+				#{file_size},    
+				SYSDATE          	
+ 		)
+ 	</insert>
+
+ 	
+ 	
+ </mapper>

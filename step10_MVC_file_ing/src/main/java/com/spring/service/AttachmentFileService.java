@@ -51,13 +51,13 @@ public class AttachmentFileService {
 		 */
 		
 		String filePath = "C:\\multi\\00.spring";
-		String attachmentOriginalFileName = file.getOriginalFilename();
+		String OriginalFileName = file.getOriginalFilename();
 		UUID uuid = UUID.randomUUID();
-		String attachmentFileName = uuid.toString() + "_" + attachmentOriginalFileName;
+		String attachmentFileName = uuid.toString() + "_" + OriginalFileName;
 		Long attachmentFileSize = file.getSize();
 		
 		AttachmentFile attachmentFile = AttachmentFile.builder()
-													.attachmentOriginalFileName(attachmentOriginalFileName)
+													.attachmentOriginalFileName(OriginalFileName)
 													.attachmentFileName(attachmentFileName)
 													.attachmentFileSize(attachmentFileSize)
 													.filePath(filePath)
