@@ -17,7 +17,7 @@
  						   is_delete, 
  						   send_date, 
  						   file_exist)
-					VALUES (email_seq.nextval,
+					VALUES (seq_email_id.nextval,
 							'ID1',
 							#{recipient_id},
 							#{email_subject},
