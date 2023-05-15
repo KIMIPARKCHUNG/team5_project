@@ -15,7 +15,6 @@
 			body,
 			is_read,
 			is_delete,
-			file_exist,
 			send_date
 		FROM email
 		WHERE is_delete = 'F' and recipient_id = #{email_address}
@@ -32,7 +31,6 @@
 			body,
 			is_read,
 			is_delete,
-			file_exist,
 			send_date
 		FROM email
 		WHERE is_delete = 'T' and recipient_id = #{email_address}
@@ -49,10 +47,9 @@
 			body,
 			is_read,
 			is_delete,
-			file_exist,
 			send_date
 		FROM email
-		where email_id = #{emailId} and recipient_id = #{email_address}
+		where email_id = #{emailId} 
  	</select>
  	
  	<!-- 메일을 읽음 표시로 업데이트 -->
