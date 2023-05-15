@@ -22,4 +22,6 @@ public interface LJH_EmailMapper {
 
 	public List<Email> getAllDeleteEmail(String email_address);
 
+	public void hardDeleteEmailByEmailId(int emailId);
+
 }
