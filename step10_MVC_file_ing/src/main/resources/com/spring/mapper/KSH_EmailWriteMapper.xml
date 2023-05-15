@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+  <mapper namespace="com.spring.mapper.KSH_EmailWriteMapper">
+ 	 	
+ 	<!-- 메일 보내기 -->
+ 	
+ 	<insert id="insertEmail" parameterType="com.spring.dto.Email">
+ 		INSERT INTO EMAIL (email_id, 
+ 						   sender_id, 
+ 						   recipient_id, 
+ 						   email_subject, 
+ 						   body, 
+ 						   is_read, 
+ 						   is_delete, 
+ 						   send_date, 
+ 						   file_exist)
+					VALUES (email_seq.nextval,
+							'ID1',
+							#{recipient_id},
+							#{email_subject},
+							#{body},
+							'F',
+							'F',
+							TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
+							'F')
+ 	</insert>
+
+ 	
+ </mapper>
