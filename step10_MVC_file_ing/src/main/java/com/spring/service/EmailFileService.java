@@ -1,6 +1,7 @@
 package com.spring.service;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,14 +73,30 @@ public class EmailFileService {
 		
 	
 
-	public EmailFile getEmailFileByEmailId(int email_id) throws SQLException,Exception {
-		EmailFile emailFile = emailFileMapper.getEmailFileByEmailId(email_id);
-	
-	
+	public List<EmailFile> getEmailFileByEmailId(int email_id) throws SQLException,Exception {
+		List<EmailFile> emailFile = null;
+			emailFile =	emailFileMapper.getEmailFileByEmailId(email_id);
+	System.out.println(emailFile);
 	if(emailFile == null) {
 		throw new Exception("존재하지 않는 파일");
 		}
 		
 		return emailFile;
+	}
+
+
+
+
+
+	public EmailFile getEmailFileByFileId(int file_id) throws Exception {
+		// TODO Auto-generated method stub
+		EmailFile emailFile = null;
+		emailFile =	emailFileMapper.getEmailFileByFileId(file_id);
+System.out.println(emailFile);
+if(emailFile == null) {
+	throw new Exception("존재하지 않는 파일");
+	}
+	
+	return emailFile;
 	}
 }

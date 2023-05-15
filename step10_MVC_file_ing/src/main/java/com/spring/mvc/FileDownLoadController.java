@@ -3,6 +3,7 @@ package com.spring.mvc;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -33,10 +34,13 @@ public class FileDownLoadController {
 	EmailFileService emailFileService;
 	
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
-	public String Upload() {
+	public String upload() {
 		return "upload";
 	}
-	
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public String write() {
+		return "write";
+	}
 	
 	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
 	public @ResponseBody String UpLoadFile(
@@ -51,7 +55,7 @@ public class FileDownLoadController {
 		boolean fileResult = false;
 		try {
 			
-			fileResult =	emailFileService.insertEmailFile(file, 12115);
+			fileResult =	emailFileService.insertEmailFile(file, 12116);
 			
 			
 		} catch (Exception e1) {
@@ -70,7 +74,7 @@ public class FileDownLoadController {
 	
 	@RequestMapping(value = "/download/file/{file_id}", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<Resource> downloadEmailFile(@PathVariable("file_id") int file_id) {
-		System.out.println(file_id);
+
 		
 	 
 		EmailFile emailFile= null;
@@ -78,17 +82,20 @@ public class FileDownLoadController {
 		Path path = null;
 		HttpHeaders headers =null;
 		try {
-			emailFile = emailFileService.getEmailFileByEmailId(file_id);
-			String filePath = emailFile.getPath();
-			path = Paths.get(filePath+"\\"+emailFile.getUuid());
-			System.out.println(path);
-			resource = new InputStreamResource(Files.newInputStream(path));
-			headers = new HttpHeaders();
-			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-			headers.setContentDisposition(ContentDisposition
-														.builder("EmailFile")
-														.filename(emailFile.getFile_subject())
-														.build());
+			emailFile = emailFileService.getEmailFileByFileId(file_id);
+			
+				String filePath = emailFile.getPath();
+				path = Paths.get(filePath+"\\"+emailFile.getUuid());
+				System.out.println(path);
+				resource = new InputStreamResource(Files.newInputStream(path));
+				headers = new HttpHeaders();
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+				headers.setContentDisposition(ContentDisposition
+															.builder("EmailFile")
+															.filename(emailFile.getFile_subject())
+															.build());
+			
+			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

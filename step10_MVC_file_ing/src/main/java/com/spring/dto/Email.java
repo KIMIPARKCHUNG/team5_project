@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @ToString
 public class Email {
-	private int emial_id;
+	private int email_id;
 	private String sender_id;
 	private String recipient_id;
 	private String email_subject;

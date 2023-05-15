@@ -23,7 +23,10 @@ public class LJH_EmailService {
 	
 	//EmailList
 	public List<Email> getAllEmail() {
-		return mapper.getAllEmail();
+//		System.out.println("mapper");
+		List<Email> emailList =  mapper.getAllEmail();
+		
+		return emailList;
 	}
 
 	public Email getEmailbyEmailId(int emailId) {

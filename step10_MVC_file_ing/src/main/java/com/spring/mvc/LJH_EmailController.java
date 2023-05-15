@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.dto.Email;
 import com.spring.dto.EmailFile;
+import com.spring.service.EmailFileService;
 import com.spring.service.LJH_EmailService;
 import com.spring.service.LJH_FileService;
 
@@ -20,13 +21,13 @@ public class LJH_EmailController {
 	LJH_EmailService emailService;
 	
 	@Autowired
-	LJH_FileService fileServie;
+	EmailFileService fileServie;
 	
 	
 	@RequestMapping(value = "/emailList2", method = RequestMethod.GET)
 	public String emailList(Model model) {
 		List<Email> emailList = emailService.getAllEmail();
-		
+		System.out.println(emailList);
 		model.addAttribute("emailList", emailList);
 		return "emailList2";
 	}
@@ -36,7 +37,16 @@ public class LJH_EmailController {
 		Email email = emailService.getEmailbyEmailId(emailId);
 		emailService.updateIsRead(emailId);
 		
-//		List<EmailFile> fileList = fileServie.getFilebyEmailId(emailId);
+		List<EmailFile> fileList = null;
+		try {
+			fileList = fileServie.getEmailFileByEmailId(emailId);
+			System.out.println(fileList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("fileList", fileList);
+		model.addAttribute("length",fileList.size());
 		model.addAttribute("email", email);
 		return "emailRead3";
 	}
