@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.spring.mapper.PSY_UserMapper">
+ 
+ 	 <select id = "getAllUsers" resultType = "com.spring.dto.UserEmail">
+ 		SELECT
+ 			email_address, mem_name
+ 		FROM user_email
+ 	</select>
+ 	
+ 	<!-- password 빠진 객체로 불러오는 UserEmail -->
+ 	<select id = "getUserByMem_name" resultType = "com.spring.dto.UserEmail"> 
+ 		SELECT
+ 			email_address, mem_name
+ 		FROM user_email
+ 		WHERE mem_name = #{mem_name}
+ 	</select>
+   
+   <select id = "getUserByEmailaddressAndPassword" resultType = "com.spring.dto.UserEmail"> 
+ 		SELECT
+ 			email_address, mem_name, password
+ 		FROM user_email
+ 		WHERE email_address = #{email_address} AND password = #{password}
+ 	</select>
+   
+ 	<insert id="insertUser" parameterType="com.spring.dto.UserEmail">
+ 		INSERT INTO
+ 			user_email (email_address, mem_name, password)
+ 		VALUES
+ 			(#{email_address}, #{mem_name}, #{password})
+ 	</insert>
+ 	
+ 	<update id="updateMem_nameAndPassword" parameterType="com.spring.dto.UserEmail">
+ 		UPDATE user_email
+ 		SET mem_name = #{mem_name}, 
+ 			password = #{password} 
+ 		WHERE email_address = #{email_address}
+ 	</update>
+ 
+ 	<delete id="deleteUserByUserEmail" parameterType="string">
+ 		DELETE FROM user_email
+ 		WHERE email_address = #{email_address}
+ 	</delete>
+ 	
+ </mapper>
