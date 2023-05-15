@@ -20,7 +20,8 @@ CREATE TABLE scott.email (
     body          VARCHAR2(4000 BYTE) NOT NULL,
     is_read       CHAR(1 BYTE) NOT NULL,
     is_delete     CHAR(1 BYTE) NOT NULL,
-    send_date     DATE NOT NULL
+    send_date     DATE NOT NULL,
+    file_exist    CHAR(1 BYTE) NOT NULL
 );
 
 ALTER TABLE scott.email
