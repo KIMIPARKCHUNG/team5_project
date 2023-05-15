@@ -15,8 +15,8 @@
  						   body, 
  						   is_read, 
  						   is_delete, 
- 						   send_date, 
- 						   file_exist)
+ 						   file_exist
+ 						   send_date)
 					VALUES (seq_email_id.nextval,
 							'ID1',
 							#{recipient_id},
@@ -24,8 +24,8 @@
 							#{body},
 							'F',
 							'F',
-							TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),
-							'F')
+							'F'
+							TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
  	</insert>
 
  	
