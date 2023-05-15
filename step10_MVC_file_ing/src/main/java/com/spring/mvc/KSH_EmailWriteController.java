@@ -60,6 +60,7 @@ public class KSH_EmailWriteController {
 		try {
 			emailResult = emailWriteService.insertEmail(newEmail);
 		//	fileResult = attachmentFileService.insertAttachmentFile(file, newEmail.getEmail_id());
+			System.out.println(newEmail);
 			attachmentFileService.insertEmailFile(file, newEmail.getEmail_id());
 		 if(emailResult) {
 				// version 1

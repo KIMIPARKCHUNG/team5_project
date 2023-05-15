@@ -1,6 +1,8 @@
 DROP TABLE scott.user_email cascade constraint;
 DROP TABLE scott.email cascade constraint;
 DROP TABLE scott.email_file cascade constraint;
+DROP SEQUENCE seq_email_id;
+DROP SEQUENCE seq_file_id;
 
 -- USER_EMAIL 테이블
 
@@ -62,3 +64,4 @@ CREATE SEQUENCE seq_file_id
 	INCREMENT BY 1;
     
 commit;
+select * from email;

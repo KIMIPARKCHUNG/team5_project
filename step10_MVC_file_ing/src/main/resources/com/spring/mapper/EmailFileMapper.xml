@@ -43,7 +43,7 @@
  		INSERT INTO scott.email_file
  		VALUES (
 			    seq_file_id.NEXTVAL, 
-				#{email_id}, 
+				seq_email_id.CURRVAL, 
 				#{path},
 				#{uuid},
 				#{file_subject},
