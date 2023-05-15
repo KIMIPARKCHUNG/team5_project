@@ -40,9 +40,9 @@ ALTER TABLE scott.email
 CREATE TABLE scott.email_file (
     file_id      NUMBER primary key,
     email_id     NUMBER,
-    path         VARCHAR2(20 BYTE) NOT NULL,
-    uuid         VARCHAR2(20 BYTE) NOT NULL,
-    file_subject VARCHAR2(20 BYTE) NOT NULL,
+    path         VARCHAR2(250 BYTE) NOT NULL,
+    uuid         VARCHAR2(250 BYTE) NOT NULL,
+    file_subject VARCHAR2(250 BYTE) NOT NULL,
     file_size    NUMBER NOT NULL,
     file_date    DATE NOT NULL
 );

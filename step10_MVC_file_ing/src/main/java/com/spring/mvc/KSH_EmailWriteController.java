@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.spring.dto.Dept;
 import com.spring.dto.Email;
 import com.spring.dto.EmailFile;
+import com.spring.service.EmailFileService;
 import com.spring.service.KSH_AttachmentFileService;
 import com.spring.service.KSH_EmailWriteService;
 import com.spring.service.LJH_EmailService;
@@ -39,7 +40,7 @@ public class KSH_EmailWriteController {
 	LJH_FileService fileService;
 	
 	@Autowired
-	KSH_AttachmentFileService attachmentFileService;
+	EmailFileService attachmentFileService;
 	
 	@RequestMapping(value = "/emailWrite", method = RequestMethod.GET)
 	public String insertDeptForm() {
@@ -59,6 +60,7 @@ public class KSH_EmailWriteController {
 		try {
 			emailResult = emailWriteService.insertEmail(newEmail);
 		//	fileResult = attachmentFileService.insertAttachmentFile(file, newEmail.getEmail_id());
+			attachmentFileService.insertEmailFile(file, newEmail.getEmail_id());
 		 if(emailResult) {
 				// version 1
 ////			view = "main";
