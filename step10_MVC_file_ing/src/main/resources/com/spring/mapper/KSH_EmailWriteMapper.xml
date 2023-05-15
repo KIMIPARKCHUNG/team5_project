@@ -18,7 +18,7 @@
  						   file_exist,
  						   send_date)
 					VALUES (seq_email_id.nextval,
-							'ID1',
+							#{sender_id},
 							#{recipient_id},
 							#{email_subject},
 							#{body},
