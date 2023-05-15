@@ -28,22 +28,17 @@
                                 ::-webkit-scrollbar-thumb:hover {
                                   background: #555; 
 
-                                } body{background: #}.card{border: none;height: 320px}.forms-inputs{position: relative}.forms-inputs span{position: absolute;top:-18px;left: 10px;background-color: #fff;padding: 5px 10px;font-size: 15px}.forms-inputs input{height: 50px;border: 2px solid #eee}.forms-inputs input:focus{box-shadow: none;outline: none;border: 2px solid #000}.btn{height: 50px}.success-data{display: flex;flex-direction: column}.bxs-badge-check{font-size: 90px}</style>
-                                </head>
-                                <body className='snippet-body'>
-                                <div class="container mt-5">
-    <div class="row d-flex justify-content-center">
-
                                 } body{background: #F6F6F6}.card{border: none;height: 370px}.forms-inputs{position: relative}
                                 						.forms-inputs span{position: absolute;top:-18px;left: 10px;background-color: #fff;padding: 5px 10px;font-size: 15px}
                                 						.forms-inputs input{height: 50px;border: 2px solid #eee}
                                 						.forms-inputs input:focus{box-shadow: none;outline: none;border: 2px solid #000}.btn{height: 50px}
                                 						.success-data{display: flex;flex-direction: column}
-                                						.bxs-badge-check{font-size: 90px}
+                                						.bxs-badge-check{font-size: 90px}                               
+
 </style>
 
 </head>
-<body className='snippet-body'>
+<body>
 <div class="container mt-5">
    <div class="row d-flex justify-content-center">
 
@@ -65,74 +60,11 @@
                 </form>
                     <div class="mb-3"> <button class="btn btn-link w-100" onclick="location.href='/signup'">회원가입</button> </div>
            	</div>
-                <!--  
-                <div class="success-data" v-else>
-                    <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">You have been logged in <br> Successfully</span> </div>
-                </div>
-                -->
+
             </div>
         </div>
     </div>
 </div>
-
-
-<!--  
-<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
-<script type='text/javascript' src='#'></script>
-<script type='text/javascript' src='#'></script>
-<script type='text/javascript' src='#'></script>
-<script type='text/javascript'>var app = new Vue({
-  el: '#form1',
-  data: function () {
-    return {
-    email : "",
-    emailBlured : false,
-    valid : false,
-    submitted : false,
-    password:"",
-    passwordBlured:false
-    }
-  },
-
-  methods:{
-
-  validate : function(){
-  this.emailBlured = true;
-  this.passwordBlured = true;
-  if( this.validEmail(this.email) && this.validPassword(this.password)){
-  	this.valid = true;
-    }
-   },
-
-validEmail : function(email) {
-   
-var re = /(.+)@(.+){2,}\.(.+){2,}/;
-if(re.test(email.toLowerCase())){
-  return true;
-}
-
-},
-
-validPassword : function(password) {
-   if (password.length > 7) {
-    return true;
-   }
-},
-
-submit : function(){
-this.validate();
-if(this.valid){
-this.submitted = true;
-}
-}
-  }
-});
-</script>
- <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
- myLink.addEventListener('click', function(e) {
-   e.preventDefault();
- });</script>
--->
                             
 </body>
 </html>
