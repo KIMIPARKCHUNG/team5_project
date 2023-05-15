@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 
 
-<title>Email list page</title>
+<title>${email.email_subject }</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -378,12 +378,12 @@ body {
 <div class="container">
 		<div class="wraper bootstrap snippets bootdeys bootdey">
 			<div class="page-title">
-				<h3 class="title">Inbox</h3>
+				<h3 class="title">${email.email_subject }</h3>
 			</div>
 			<div class="row">
 
 				<div class="col-md-3">
-					<a href="#email-compose.html" class="btn btn-success btn-block">Compose</a>
+					<a href="/emailWrite" class="btn btn-success btn-block">메일보내기</a>
 					<div class="panel panel-default p-0  m-t-20">
 						<div class="panel-body p-0">
 							<div class="list-group no-border mail-list">

@@ -2,6 +2,8 @@ package com.spring.mvc;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,9 +49,11 @@ public class KSH_EmailWriteController {
 	@RequestMapping(value = "/emailWrite", method = RequestMethod.POST)
 	public String insertEmail(@ModelAttribute Email newEmail,
 	                          @RequestParam(value = "file") MultipartFile file,
-	                          Model model) {
+	                          Model model,
+	                          HttpSession session) {
 	String view = "error";
-		
+	String email_address = (String) session.getAttribute("email_address");
+	newEmail.setSender_id(email_address);
 	//	boolean fileResult = false;
 		boolean emailResult = false;
 		try {
