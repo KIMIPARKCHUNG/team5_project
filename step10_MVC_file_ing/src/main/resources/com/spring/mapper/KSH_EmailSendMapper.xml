@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+ <mapper namespace="com.spring.mapper.KSH_EmailSendMapper">
+ 	 	
+ 	 <!-- 보낸 메일 출력 -->
+ 	<select id="getAllEmail2" resultType="com.spring.dto.Email">
+ 		SELECT 
+			email_id,
+			sender_id,
+			recipient_id,
+			email_subject,
+			body,
+			is_read,
+			is_delete,
+			send_date
+		FROM email
+		WHERE is_delete = 'F' and sender_id = #{email_address}
+		ORDER BY send_date DESC 
+ 	</select>
+ 	
+ 	<!-- 메일 상세 정보 출력 -->
+ 	<select id="getEmailbyEmailId2" resultType="com.spring.dto.Email">
+ 		SELECT 
+			email_id,
+			sender_id,
+			recipient_id,
+			email_subject,
+			body,
+			is_read,
+			is_delete,
+			send_date
+		FROM email
+		where email_id = #{emailId} 
+ 	</select>
+ 	
+ 	<!-- 선택한 메일 휴지통으로 이동 -->
+ 	<update id="deleteEmailByEmailId2" parameterType="_int">
+ 		UPDATE email
+ 		SET is_delete = 'T'
+ 		WHERE email_id = #{emailId}
+ 	</update>
+ </mapper>
