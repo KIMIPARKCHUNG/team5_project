@@ -164,18 +164,18 @@ body {
 	<div class="container">
 		<div class="wraper bootstrap snippets bootdeys bootdey">
 			<div class="page-title">
-				<h3 class="title">메일 보관함</h3>
+				<h3 class="title">Inbox</h3>
 			</div>
 			<div class="row">
 
 				<div class="col-md-3">
-					<a href="/emailWrite" class="btn btn-success btn-block">메일 보내기</a>
+					<a href="#email-compose.html" class="btn btn-success btn-block">Compose</a>
 					<div class="panel panel-default p-0  m-t-20">
 						<div class="panel-body p-0">
 							<div class="list-group no-border mail-list">
-								<a href="#" class="list-group-item active"><i
+								<a href="/emailList2" class="list-group-item active"><i
 									class="fa fa-download m-r-5"></i> 받은 메일함 <b id='readCount'> (${isReadCount})</b></a>
-							    <a href="#" class="list-group-item"><i
+							    <a href="/emailSendList" class="list-group-item"><i
 									class="fa fa-paper-plane-o m-r-5"></i>Sent Mail</a> 
 								<a href="/deleteList" class="list-group-item"><i
 								   class="fa fa-trash-o m-r-5"></i> 휴지통 <b>(354)</b></a>
@@ -257,15 +257,7 @@ body {
 													<td><a href="emailRead3/${email.email_id}">${email.email_subject }</a></td>
 												</c:otherwise>
 											</c:choose>
-											<c:choose>
-												<c:when test="${fn:contains(email.file_exist, 'T')}">
-													<td><i class="fa fa-paperclip" id="clip"></i></td>
-												</c:when>
-												<c:otherwise>
-													<td></td>
-												</c:otherwise>
-											</c:choose>
-											
+											<td><i class="fa fa-paperclip" id="clip"></i></td>
 											<td class="text-right">${email.send_date }</td>
 										</tr>
 									</c:forEach>
