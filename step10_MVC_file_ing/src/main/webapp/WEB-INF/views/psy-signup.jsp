@@ -10,7 +10,6 @@
 <title>SignupTest</title>
 <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'>
 <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <style>::-webkit-scrollbar {
   width: 8px;
@@ -47,9 +46,10 @@
                 
                     <div class="forms-inputs mb-4">
                     	<span>Id</span>
-                    	<input id = "email_address" name = "email_address" type = "text" class ="form-control">                      
-                    </div>                   	
-                        
+                    	<input id = "email_address" name = "email_address" type = "text" class ="form-control">
+                        <span id="mem_idMsg" style="font-size:8pt;"></span>
+                    </div>
+                    
                     <div class="forms-inputs mb-4">
                     	<span>Name</span>
                     	<input id = "mem_name" name = "mem_name" type = "text" class = "form-control">
@@ -62,18 +62,11 @@
                         <div class="invalid-feedback">비밀번호는 5자 이상이어야 합니다.</div>
                     </div>
                     
-                    <div>
-                    	<span id="emailMsg" style="font-size:10pt; color:#DB0000;"></span>
-                    	<br>
-                    </div>
-                    <br>
-                    
                     <div class="mb-3"> <button type = "reset" class="btn text-white w-100" style="background-color: #D5D5D5;">다시작성</button> </div>            
                     <div class="mb-3"> <button type = "submit" class="btn text-white w-100" style="background-color: #5CB85C;" >회원가입</button> </div>
                 
                 
                 </form>
-                	
               </div>
                      
             </div>
@@ -83,29 +76,22 @@
              <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
              
              
-           <script type='text/javascript'>
-	           const email = document.getElementById('email_address');
-			   let emailMsg = document.getElementById('emailMsg');
-			   
-	           email.addEventListener('blur', () => {
-		             console.log(email.value);
-		             
-		             axios.get('http://localhost:8083/api/user/' + email.value)
-		             .then(response => {
-		               if (response.data.email_address != null) {
-		                 emailMsg.innerHTML = "※ 이미 존재하는 ID입니다. 다른 ID로 시도해주세요!";
-		               }
-		             })
-		             .catch(error=>{
-		            	 emailMsg.innerHTML = "";
-		             })
-	         	});
-	           
-           </script>
-
-             <script type='text/javascript' src='#'></script>
-             <script type='text/javascript' src='#'></script>
+<!--          <script type='text/javascript'>
              
+	         	const inputEmail = document.getElementById('email_address');
+	        	const emailMsg = document.getElementById('emailMsg');
+	        	
+	        	
+	        	inputEmail.addEventListener('blur', () => {
+	        		axios.get('http://localhost:8083/signup/{email_address}' + inputEmail.value)
+	        			.then(response => {
+						emailMsg.innerHTML = 'ㅇㄹㄴㄴㅇㄴ';
+	        	});
+
+             </script>
+-->
+             <script type='text/javascript' src='#'></script>
+             <script type='text/javascript' src='#'></script>
 
 
     </body>
