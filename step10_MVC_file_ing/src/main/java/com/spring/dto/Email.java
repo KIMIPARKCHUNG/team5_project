@@ -21,7 +21,7 @@ public class Email {
 	private String body;
 	private char is_read;
 	private char is_delete;
-	private Date send_date;
 	private char file_exist;
+	private Date send_date;
 	
 }
