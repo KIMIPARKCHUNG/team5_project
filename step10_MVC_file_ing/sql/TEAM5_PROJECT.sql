@@ -1,6 +1,8 @@
 DROP TABLE scott.user_email cascade constraint;
 DROP TABLE scott.email cascade constraint;
 DROP TABLE scott.email_file cascade constraint;
+DROP SEQUENCE seq_email_id;
+DROP SEQUENCE seq_file_id;
 
 -- USER_EMAIL 테이블
 
@@ -40,9 +42,9 @@ ALTER TABLE scott.email
 CREATE TABLE scott.email_file (
     file_id      NUMBER primary key,
     email_id     NUMBER,
-    path         VARCHAR2(20 BYTE) NOT NULL,
-    uuid         VARCHAR2(20 BYTE) NOT NULL,
-    file_subject VARCHAR2(20 BYTE) NOT NULL,
+    path         VARCHAR2(250 BYTE) NOT NULL,
+    uuid         VARCHAR2(250 BYTE) NOT NULL,
+    file_subject VARCHAR2(250 BYTE) NOT NULL,
     file_size    NUMBER NOT NULL,
     file_date    DATE NOT NULL
 );
@@ -62,3 +64,4 @@ CREATE SEQUENCE seq_file_id
 	INCREMENT BY 1;
     
 commit;
+select * from email;

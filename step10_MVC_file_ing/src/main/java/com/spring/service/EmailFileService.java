@@ -51,7 +51,7 @@ public class EmailFileService {
 														.path(filePath)
 														.uuid(fileName)
 														.build();
-			System.out.println("mapper");
+			System.out.println(email_id);
 			int res = 1;
 			res = emailFileMapper.insertEmailFile(emailFile);
 
