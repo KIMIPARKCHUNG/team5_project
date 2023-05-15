@@ -36,7 +36,7 @@
 </style>
 
 </head>
-<body className='snippet-body'>
+<body>
 <div class="container mt-5">
    <div class="row d-flex justify-content-center">
         <div class="col-md-6">
@@ -46,8 +46,8 @@
                 
                     <div class="forms-inputs mb-4">
                     	<span>Email</span>
-                    	<input id = "Email_address" name = "Email_address" type = "text" class ="form-control">
-                        <div class="invalid-feedback">유효한 이메일 주소를 기입해주세요.</div>
+                    	<input id = "email_address" name = "email_address" type = "text" class ="form-control">
+                        <span id="emailMsg" style="font-size:8pt;"></span>
                     </div>
                     
                     <div class="forms-inputs mb-4">
@@ -68,19 +68,28 @@
                 
                 </form>
               </div>
-                
-                
-        <!--         <div class="success-data" c:if test="${empty registered}">
-                    <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-1">You have been logged in <br> Successfully</span> </div>
-                </div>
-		 -->                
+                     
             </div>
         </div>
     </div>
 </div>
              <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
              
-             <script type='text/javascript'></script>
+             
+<!--          <script type='text/javascript'>
+             
+	         	const inputEmail = document.getElementById('email_address');
+	        	const emailMsg = document.getElementById('emailMsg');
+	        	
+	        	
+	        	inputEmail.addEventListener('blur', () => {
+	        		axios.get('http://localhost:8083/signup/{email_address}' + inputEmail.value)
+	        			.then(response => {
+						emailMsg.innerHTML = 'ㅇㄹㄴㄴㅇㄴ';
+	        	});
+
+             </script>
+-->
              <script type='text/javascript' src='#'></script>
              <script type='text/javascript' src='#'></script>
 

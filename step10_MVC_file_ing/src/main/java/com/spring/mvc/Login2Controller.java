@@ -23,9 +23,9 @@ public class Login2Controller {
 	@Autowired
 	EmpService empService;
 	
-	@RequestMapping(value = "/login2", method = RequestMethod.GET)
-	public String loginForm() {
-		return "login2";
-	}
-	
+//	@RequestMapping(value = "/login2", method = RequestMethod.GET)
+//	public String loginForm() {
+//		return "login2";
+//	}
+//	
 }

@@ -21,6 +21,9 @@ public interface PSY_UserMapper {
 	public UserEmail getUserByEmailaddressAndPassword(@Param("email_address") String email_address
 													 ,@Param("password") String password) throws SQLException;
 	
+	//getUserByEmailaddress - UserEmail 객체 (password제외)
+	public UserEmail getUserByEmailaddress(String email_address) throws SQLException;
+	
 	// insertUser - UserEmail
 	public int insertUser(UserEmail newUser) throws SQLException;
 	

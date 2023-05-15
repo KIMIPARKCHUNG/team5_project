@@ -14,7 +14,7 @@ public class PSY_UserService {
 	@Autowired
 	PSY_UserMapper mapper;
 	
-	
+	// insertUser - UserEmail
 	public boolean insertUser(UserEmail newUser) throws SQLException, Exception {
 		boolean result = false;
 		
@@ -29,17 +29,29 @@ public class PSY_UserService {
 		return result;
 	}
 	
+	// getUserByEmailaddressAndPassword - UserEmail
 	public UserEmail getUserByEmailaddressAndPassword(String email_address, String password) throws SQLException, Exception {
 		
 		UserEmail user = mapper.getUserByEmailaddressAndPassword(email_address, password);
 		
 		if(user == null) {
-			throw new Exception("비밀번호가 틀렸거나, 존재하지 않는 메일 정보입니다.");
+			System.out.println("로그인 에러");
 		}
 		
 		return user;
 	}
-	
+
+	// getUserByEmailaddress - UserEmail
+	public UserEmail getUserByEmailaddress(String email_address) throws SQLException, Exception {
+		
+		UserEmail user = mapper.getUserByEmailaddress(email_address);
+		
+		if(user == null) {
+			System.out.println("존재하지 않는 메일 주소");
+		}
+		
+		return user;
+	}
 	
 	
 }

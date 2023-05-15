@@ -19,11 +19,20 @@
  		WHERE mem_name = #{mem_name}
  	</select>
    
+   <!-- 로그인용 sql / email과 password가 일치해야 UserEmail 객체 반환 -->
    <select id = "getUserByEmailaddressAndPassword" resultType = "com.spring.dto.UserEmail"> 
  		SELECT
  			email_address, mem_name, password
  		FROM user_email
  		WHERE email_address = #{email_address} AND password = #{password}
+ 	</select>
+ 	
+ 	<!-- EmailAddress로 UserEmail 객체 반환 -->
+ 	<select id = "getUserByEmailaddress" resultType = "com.spring.dto.UserEmail"> 
+ 		SELECT
+ 			email_address, mem_name
+ 		FROM user_email
+ 		WHERE email_address = #{email_address}
  	</select>
    
  	<insert id="insertUser" parameterType="com.spring.dto.UserEmail">
