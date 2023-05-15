@@ -22,15 +22,15 @@ public class LJH_EmailService {
 	SqlSession sqlSession;
 	
 	//EmailList
-	public List<Email> getAllEmail() {
+	public List<Email> getAllEmail(String email_address) {
 //		System.out.println("mapper");
-		List<Email> emailList =  mapper.getAllEmail();
+		List<Email> emailList =  mapper.getAllEmail(email_address);
 		
 		return emailList;
 	}
 
-	public Email getEmailbyEmailId(int emailId) {
-		return mapper.getEmailbyEmailId(emailId);
+	public Email getEmailbyEmailId(int emailId, String email_address) {
+		return mapper.getEmailbyEmailId(emailId, email_address);
 	}
 
 	public void updateIsRead(int emailId) {
@@ -42,7 +42,7 @@ public class LJH_EmailService {
 		
 	}
 
-	public List<Email> getAllDeleteEmail() {
-		return mapper.getAllDeleteEmail();
+	public List<Email> getAllDeleteEmail(String email_address) {
+		return mapper.getAllDeleteEmail(email_address);
 	}
 }

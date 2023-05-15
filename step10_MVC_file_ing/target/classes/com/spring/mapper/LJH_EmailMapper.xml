@@ -17,7 +17,24 @@
 			is_delete,
 			send_date
 		FROM email
-		WHERE is_delete = 'F'
+		WHERE is_delete = 'F' and recipient_id = #{email_address}
+		ORDER BY send_date DESC 
+ 	</select>
+ 	
+ 	 <!-- 삭제된 메일 출력 -->
+ 	<select id="getAllDeleteEmail" resultType="com.spring.dto.Email">
+ 		SELECT 
+			email_id,
+			sender_id,
+			recipient_id,
+			email_subject,
+			body,
+			is_read,
+			is_delete,
+			send_date
+		FROM email
+		WHERE is_delete = 'T' and recipient_id = #{email_address}
+		ORDER BY send_date DESC 
  	</select>
  	
  	<!-- 메일 상세 정보 출력 -->
@@ -32,13 +49,20 @@
 			is_delete,
 			send_date
 		FROM email
-		where email_id = #{emailId}
+		where email_id = #{emailId} and recipient_id = #{email_address}
  	</select>
  	
  	<!-- 메일을 읽음 표시로 업데이트 -->
  	<update id="updateIsRead" parameterType="_int">
  		UPDATE email
  		SET is_read = 'T'
+ 		WHERE email_id = #{emailId}
+ 	</update>
+ 	
+ 	<!-- 선택한 메일 휴지통으로 이동 -->
+ 	<update id="deleteEmailByEmailId" parameterType="_int">
+ 		UPDATE email
+ 		SET is_delete = 'T'
  		WHERE email_id = #{emailId}
  	</update>
  </mapper>

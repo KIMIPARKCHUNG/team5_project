@@ -2,6 +2,8 @@ package com.spring.mvc;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +28,15 @@ public class LJH_EmailController {
 	
 	
 	@RequestMapping(value = "/emailList2", method = RequestMethod.GET)
-	public String emailList(Model model) {
-		List<Email> emailList = emailService.getAllEmail();
-		System.out.println(emailList);
+	public String emailList(Model model, HttpSession session) {
+		if(session.getAttribute("email_address")==null) {
+			return "login2";
+		}
+		
+		String email_address =  (String) session.getAttribute("email_address");
+		System.out.println(email_address);
+		
+		List<Email> emailList = emailService.getAllEmail(email_address);
 		int isReadCount = 0;
 		
 		for(int i=0; i<emailList.size(); i++) {
@@ -40,12 +48,23 @@ public class LJH_EmailController {
 		model.addAttribute("isReadCount", isReadCount);
 
 		model.addAttribute("emailList", emailList);
+		
+		
 		return "emailList2";
 	}
 	
 	@RequestMapping(value = "/emailRead3/{emailId}", method=RequestMethod.GET)
-	public String getEmailbyEmailId(@PathVariable int emailId, Model model) {
-		Email email = emailService.getEmailbyEmailId(emailId);
+	public String getEmailbyEmailId(@PathVariable int emailId, Model model, HttpSession session) {
+		if(session.getAttribute("email_address")==null) {
+			return "login2";
+		}
+		String email_address = (String) session.getAttribute("email_address");
+		
+		Email email = emailService.getEmailbyEmailId(emailId, email_address);
+		if(email==null) {
+			return "redirect:/emailList2";
+		}
+		
 		emailService.updateIsRead(emailId);
 		int fileCount = 0;
 		int fileTotalSize = 0;
@@ -88,8 +107,14 @@ public class LJH_EmailController {
 	}
 	
 	@RequestMapping(value = "/deleteList", method = RequestMethod.GET)
-	public String deleteList(Model model) {
-		List<Email> emailList = emailService.getAllDeleteEmail();
+	public String deleteList(Model model, HttpSession session) {
+		if(session.getAttribute("email_address") == null) {
+			return "login2";
+		}
+		
+		String email_address = (String) session.getAttribute("email_address");
+		
+		List<Email> emailList = emailService.getAllDeleteEmail(email_address);
 		
 		model.addAttribute("emailList", emailList);
 		return "deleteList";

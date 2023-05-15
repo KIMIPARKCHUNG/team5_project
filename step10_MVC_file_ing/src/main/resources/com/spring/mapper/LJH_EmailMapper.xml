@@ -17,7 +17,7 @@
 			is_delete,
 			send_date
 		FROM email
-		WHERE is_delete = 'F'
+		WHERE is_delete = 'F' and recipient_id = #{email_address}
 		ORDER BY send_date DESC 
  	</select>
  	
@@ -33,7 +33,7 @@
 			is_delete,
 			send_date
 		FROM email
-		WHERE is_delete = 'T'
+		WHERE is_delete = 'T' and recipient_id = #{email_address}
 		ORDER BY send_date DESC 
  	</select>
  	
@@ -49,7 +49,7 @@
 			is_delete,
 			send_date
 		FROM email
-		where email_id = #{emailId}
+		where email_id = #{emailId} and recipient_id = #{email_address}
  	</select>
  	
  	<!-- 메일을 읽음 표시로 업데이트 -->
