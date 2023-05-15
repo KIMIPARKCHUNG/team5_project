@@ -22,5 +22,6 @@ public class Email {
 	private char is_read;
 	private char is_delete;
 	private Date send_date;
+	private char file_exist;
 	
 }
