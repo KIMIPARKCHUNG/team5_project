@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.dto.Email;
 import com.spring.dto.EmailFile;
@@ -26,7 +27,15 @@ public class LJH_EmailController {
 	@RequestMapping(value = "/emailList2", method = RequestMethod.GET)
 	public String emailList(Model model) {
 		List<Email> emailList = emailService.getAllEmail();
+		int isReadCount = 0;
 		
+		for(int i=0; i<emailList.size(); i++) {
+			if(emailList.get(i).getIs_read()=='F') {
+				isReadCount++;
+			}
+		}
+		
+		model.addAttribute("isReadCount", isReadCount);
 		model.addAttribute("emailList", emailList);
 		return "emailList2";
 	}
@@ -35,10 +44,42 @@ public class LJH_EmailController {
 	public String getEmailbyEmailId(@PathVariable int emailId, Model model) {
 		Email email = emailService.getEmailbyEmailId(emailId);
 		emailService.updateIsRead(emailId);
+		int fileCount = 0;
+		int fileTotalSize = 0;
 		
-//		List<EmailFile> fileList = fileServie.getFilebyEmailId(emailId);
+
+		List<EmailFile> fileList = fileServie.getFilebyEmailId(emailId);
+		if(fileList != null) {
+			for(int i=0; i<fileList.size(); i++) {
+				fileCount++;
+				fileTotalSize += fileList.get(i).getFile_size();
+			}
+			
+			model.addAttribute("fileList", fileList);
+			model.addAttribute("fileCount", fileCount);
+			model.addAttribute("fileTotalSize", fileTotalSize);
+		}
 		model.addAttribute("email", email);
 		return "emailRead3";
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String deleteEmailByEmailId(@RequestParam(value="deleteCheck", required=false) List<String> checkEmailId) {
+		if(checkEmailId==null) {
+			return "redirect:/emailList2";
+		}
+		for(int i=0; i<checkEmailId.size(); i++) {
+			emailService.deleteEmailByEmailId(Integer.parseInt(checkEmailId.get(i)));
+		}
+		return "redirect:/emailList2";
+	}
+	
+	@RequestMapping(value = "/deleteList", method = RequestMethod.GET)
+	public String deleteList(Model model) {
+		List<Email> emailList = emailService.getAllDeleteEmail();
+		
+		model.addAttribute("emailList", emailList);
+		return "deleteList";
 	}
 
 }

@@ -13,4 +13,8 @@ public interface LJH_EmailMapper {
 	public Email getEmailbyEmailId(int emailId);
 
 	public void updateIsRead(int emailId);
+
+	public void deleteEmailByEmailId(int emailId);
+
+	public List<Email> getAllDeleteEmail();
 }

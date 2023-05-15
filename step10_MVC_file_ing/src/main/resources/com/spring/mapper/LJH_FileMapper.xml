@@ -8,15 +8,15 @@
  	 <!-- 모든 파일 출력 -->
  	<select id="getFilebyEmailId" resultType="com.spring.dto.EmailFile">
  		SELECT 
-			int file_id;
-			int email_id;
-			String path;
-			String uuid;
-			String file_subject;
-			int file_size;
-			Date file_date;
+			file_id,
+			email_id,
+			path,
+			uuid,
+			file_subject,
+			file_size,
+			file_date
 		FROM email_file
-		WHERE is_delete = 'F'
+		WHERE email_id = #{emailId}
  	</select>
  	
  </mapper>

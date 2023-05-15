@@ -1,807 +1,497 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 
 
-<title>read email</title>
+<title>Email list page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet">
 <style type="text/css">
-    	body{
-        background-color: #f9fafb;
-    margin-top:20px;
-}
-@media (min-width: 992px) {
-    .inbox-wrapper .email-aside .aside-content {
-        padding-right: 10px;
-    }
+body {
+	margin-top: 20px;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-header {
-    padding: 0 0 5px;
-    position: relative;
+/*text color*/
+.text-white {
+	color: #ffffff;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-header .title {
-    display: block;
-    margin: 3px 0 0;
-    font-size: 1.1rem;
-    line-height: 27px;
-    color: #686868;
+.text-danger {
+	color: #cb2a2a;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-header .navbar-toggle {
-    background: 0 0;
-    display: none;
-    outline: 0;
-    border: 0;
-    padding: 0 11px 0 0;
-    text-align: right;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
+.text-muted {
+	color: #98a6ad;
 }
 
-@media (max-width: 991px) {
-    .inbox-wrapper .email-aside .aside-content .aside-header .navbar-toggle {
-        display: block;
-    }
+.text-primary {
+	color: #3bc0c3;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-header .navbar-toggle .icon {
-    font-size: 24px;
-    color: #71738d;
+.text-warning {
+	color: #ebc142;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-compose {
-    text-align: center;
-    padding: 14px 0;
+.text-success {
+	color: #33b86c;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-compose .btn,
-.inbox-wrapper .email-aside .aside-content .aside-compose .fc .fc-button,
-.fc .inbox-wrapper .email-aside .aside-content .aside-compose .fc-button,
-.inbox-wrapper .email-aside .aside-content .aside-compose .swal2-modal .swal2-actions button,
-.swal2-modal .swal2-actions .inbox-wrapper .email-aside .aside-content .aside-compose button,
-.inbox-wrapper .email-aside .aside-content .aside-compose .wizard > .actions a,
-.wizard > .actions .inbox-wrapper .email-aside .aside-content .aside-compose a {
-    padding: 11px;
+.text-info {
+	color: #1ca8dd;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav {
-    visibility: visible;
-    padding: 0 0;
+.text-inverse {
+	color: #14082d;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav.collapse {
-    display: block;
+.text-pink {
+	color: #F13C6E;
 }
 
-@media (max-width: 991px) {
-    .inbox-wrapper .email-aside .aside-content .aside-nav.collapse {
-        display: none;
-    }
+.text-purple {
+	color: #615ca8;
+}
+/* text-color */
+.text-dark {
+	color: #797979;
 }
 
-@media (max-width: 991px) {
-    .inbox-wrapper .email-aside .aside-content .aside-nav.show {
-        display: block;
-    }
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus
+	{
+	background-color: #ddd;
+	border-color: #ddd;
+	color: #444;
+	z-index: 2;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav .title {
-    display: block;
-    color: #3d405c;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 20px 0 0;
-    padding: 8px 14px 4px;
+.list-group-item, .list-group-item:first-child, .list-group-item:last-child
+	{
+	border-radius: 0px;
+	padding: 12px 20px;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav .nav li {
-    width: 100%;
+.list-group-item-heading {
+	font-weight: 300;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav .nav li a {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: center;
-    align-items: center;
-    position: relative;
-    color: #71748d;
-    padding: 7px 14px;
+.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
+	color: #3bc0c3;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav .nav li a:hover {
-    text-decoration: none;
-    background-color: rgba(114, 124, 245, 0.1);
-    color: #727cf5;
+.list-group-item.active .list-group-item-text, .list-group-item.active:focus .list-group-item-text,
+	.list-group-item.active:hover .list-group-item-text {
+	color: #3bc0c3;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav .nav li a .icon svg {
-    width: 18px;
-    margin-right: 10px;
+.m-t-40 {
+	margin-top: 40px !important;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav .nav li a .badge {
-    margin-left: auto;
+.panel {
+	padding: 20px 30px;
+	border: none;
+	border-top: 1px solid #ddd;
+	margin-bottom: 20px;
+	box-shadow: none;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav .nav li a svg {
-    width: 18px;
-    margin-right: 10px;
+.panel .panel-body {
+	padding: 0px;
+	padding-top: 20px;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav .nav li.active a {
-    color: #ff3366;
-    background: rgba(255, 51, 102, 0.1);
+.panel .panel-body p {
+	margin: 0px;
 }
 
-.inbox-wrapper .email-aside .aside-content .aside-nav .nav li.active a .icon {
-    color: #ff3366;
+.panel .panel-body p+p {
+	margin-top: 15px;
 }
 
-.inbox-wrapper .email-content .email-inbox-header {
-    background-color: transparent;
-    padding: 18px 18px;
+.panel-default>.panel-heading {
+	background-color: #FFFFFF;
+	border-color: #DDDDDD;
+	color: #797979;
 }
 
-.inbox-wrapper .email-content .email-inbox-header .email-title {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: center;
-    align-items: center;
-    font-size: 1rem;
+.panel-heading {
+	border-color: #eff2f7;
+	font-size: 16px;
+	padding: 0;
+	padding-bottom: 15px;
 }
 
-.inbox-wrapper .email-content .email-inbox-header .email-title svg {
-    width: 20px;
-    margin-right: 10px;
-    color: #686868;
+.panel-title {
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 0;
+	margin-top: 0;
 }
 
-.inbox-wrapper .email-content .email-inbox-header .email-title .new-messages {
-    font-size: .875rem;
-    color: #686868;
-    margin-left: 3px;
+.panel-footer {
+	margin: 0px -30px -30px;
+	background: #eee;
+	border-top: 0px;
 }
 
-.inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn .btn,
-.inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn .fc .fc-button,
-.fc .inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn .fc-button,
-.inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn .swal2-modal .swal2-actions button,
-.swal2-modal .swal2-actions .inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn button,
-.inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn .wizard > .actions a,
-.wizard > .actions .inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn a {
-    border-radius: 0;
-    padding: 4.5px 10px;
+.panel-group .panel .panel-heading {
+	padding-bottom: 0;
+	border-bottom: 0;
 }
 
-.inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn .btn svg,
-.inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn .fc .fc-button svg,
-.fc .inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn .fc-button svg,
-.inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn .swal2-modal .swal2-actions button svg,
-.swal2-modal .swal2-actions .inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn button svg,
-.inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn .wizard > .actions a svg,
-.wizard > .actions .inbox-wrapper .email-content .email-inbox-header .input-search .input-group-btn a svg {
-    width: 18px;
+.panel-group .panel {
+	margin-bottom: 0;
+	border-radius: 0;
 }
 
-.inbox-wrapper .email-content .email-filters {
-    padding: 20px;
-    border-bottom: 1px solid #e8ebf1;
-    background-color: transparent;
-    width: 100%;
-    border-top: 1px solid #e8ebf1;
-}
-
-.inbox-wrapper .email-content .email-filters > div {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: center;
-    align-items: center;
-}
-
-.inbox-wrapper .email-content .email-filters .email-filters-left .btn-group,
-.inbox-wrapper .email-content .email-filters .email-filters-left .fc .fc-toolbar.fc-header-toolbar .fc-left .fc-button-group,
-.fc .fc-toolbar.fc-header-toolbar .fc-left .inbox-wrapper .email-content .email-filters .email-filters-left .fc-button-group,
-.inbox-wrapper .email-content .email-filters .email-filters-left .fc .fc-toolbar.fc-header-toolbar .fc-right .fc-button-group,
-.fc .fc-toolbar.fc-header-toolbar .fc-right .inbox-wrapper .email-content .email-filters .email-filters-left .fc-button-group {
-    margin-right: 5px;
-}
-
-.inbox-wrapper .email-content .email-filters .email-filters-left input {
-    margin-right: 8px;
-}
-
-.inbox-wrapper .email-content .email-filters .email-filters-right {
-    text-align: right;
-}
-
-@media (max-width: 767px) {
-    .inbox-wrapper .email-content .email-filters .email-filters-right {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-}
-
-.inbox-wrapper .email-content .email-filters .email-filters-right .email-pagination-indicator {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 13px;
-}
-
-.inbox-wrapper .email-content .email-filters .email-filters-right .email-pagination-nav .btn svg,
-.inbox-wrapper .email-content .email-filters .email-filters-right .email-pagination-nav .fc .fc-button svg,
-.fc .inbox-wrapper .email-content .email-filters .email-filters-right .email-pagination-nav .fc-button svg,
-.inbox-wrapper .email-content .email-filters .email-filters-right .email-pagination-nav .swal2-modal .swal2-actions button svg,
-.swal2-modal .swal2-actions .inbox-wrapper .email-content .email-filters .email-filters-right .email-pagination-nav button svg,
-.inbox-wrapper .email-content .email-filters .email-filters-right .email-pagination-nav .wizard > .actions a svg,
-.wizard > .actions .inbox-wrapper .email-content .email-filters .email-filters-right .email-pagination-nav a svg {
-    width: 18px;
-}
-
-.inbox-wrapper .email-content .email-filters .be-select-all.custom-checkbox {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 0;
-    margin: 0 30px 0 0;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: center;
-    align-items: center;
-    border-bottom: 1px solid #e8ebf1;
-    padding: 10px 20px;
-    width: 100%;
-    cursor: pointer;
-    position: relative;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background .2s ease-in-out;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item:hover {
-    background: rgba(114, 124, 245, 0.08);
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item:last-child {
-    margin-bottom: 5px;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-actions {
-    width: 40px;
-    vertical-align: top;
-    display: table-cell;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-actions .form-check {
-    margin-bottom: 0;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-actions .form-check i::before {
-    width: 15px;
-    height: 15px;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-actions .form-check i::after {
-    font-size: .8rem;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-actions .favorite {
-    display: block;
-    padding-left: 1px;
-    line-height: 15px;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-actions .favorite span svg {
-    width: 14px;
-    color: #686868;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-actions .favorite:hover span {
-    color: #8d8d8d;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-actions .favorite.active span svg {
-    color: #fbbc06;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-detail {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-detail .from {
-    display: block;
-    font-weight: 400;
-    margin: 0 0 1px 0;
-    color: #000;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-detail .msg {
-    margin: 0;
-    color: #71738d;
-    font-size: .8rem;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-detail .date {
-    color: #000;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item .email-list-detail .date .icon svg {
-    width: 14px;
-    margin-right: 7px;
-    color: #3d405c;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item.email-list-item--unread {
-    background-color: rgba(114, 124, 245, 0.09);
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item.email-list-item--unread .from {
-    color: #000;
-    font-weight: 800;
-}
-
-.inbox-wrapper .email-content .email-list .email-list-item.email-list-item--unread .msg {
-    font-weight: 700;
-    color: #686868;
-}
-
-.rtl .inbox-wrapper .email-aside .aside-content .aside-header .navbar-toggle .icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.rtl .inbox-wrapper .email-aside .aside-content .aside-nav .nav {
-    padding-right: 0;
-}
-
-.rtl .inbox-wrapper .email-aside .aside-content .aside-nav .nav li a .icon svg {
-    margin-right: 0;
-    margin-left: 10px;
-}
-
-.rtl .inbox-wrapper .email-aside .aside-content .aside-nav .nav li a .badge {
-    margin-left: 0;
-    margin-right: auto;
-}
-
-.rtl .inbox-wrapper .email-aside .aside-content .aside-nav .nav li a svg {
-    margin-right: 0;
-    margin-left: 10px;
-}
-
-.rtl .inbox-wrapper .email-content .email-inbox-header .email-title svg {
-    margin-right: 0;
-    margin-left: 10px;
-}
-
-.rtl .inbox-wrapper .email-content .email-inbox-header .email-title .new-messages {
-    margin-left: 0;
-    margin-right: 3px;
-}
-
-.rtl .inbox-wrapper .email-content .email-filters .email-pagination-indicator {
-    margin-right: 0;
-    margin-left: 13px;
-}
-
-.rtl .inbox-wrapper .email-content .email-list .email-list-item .email-list-detail .date .icon svg {
-    margin-right: 0;
-    margin-left: 7px;
+.m-t-20 {
+	margin-top: 20px;
 }
 
 .email-head {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 .email-head-subject {
-    padding: 25px 25px;
-    border-bottom: 1px solid #e8ebf1;
+	padding: 25px 25px;
+	border-bottom: 1px solid #e8ebf1;
 }
 
-@media (max-width: 767px) {
-    .email-head-subject {
-        padding: 25px 10px;
-    }
+@media ( max-width : 767px) {
+	.email-head-subject {
+		padding: 25px 10px;
+	}
 }
 
 .email-head-subject .title {
-    display: block;
-    font-size: .99rem;
+	display: block;
+	font-size: .99rem;
 }
 
 .email-head-subject .title a.active .icon {
-    color: #fbbc06;
+	color: #fbbc06;
 }
 
 .email-head-subject .title a .icon {
-    color: silver;
-    margin-right: 6px;
+	color: silver;
+	margin-right: 6px;
 }
 
 .email-head-subject .title a .icon svg {
-    width: 18px;
+	width: 18px;
 }
 
 .email-head-subject .icons {
-    font-size: 14px;
-    float: right;
+	font-size: 14px;
+	float: right;
 }
 
 .email-head-subject .icons .icon {
-    color: #000;
-    margin-left: 12px;
+	color: #000;
+	margin-left: 12px;
 }
 
 .email-head-subject .icons .icon svg {
-    width: 18px;
+	width: 18px;
 }
 
 .email-head-sender {
-    padding: 13px 25px;
+	padding: 13px 25px;
 }
 
-@media (max-width: 767px) {
-    .email-head-sender {
-        padding: 25px 10px;
-    }
+@media ( max-width : 767px) {
+	.email-head-sender {
+		padding: 25px 10px;
+	}
 }
 
 .email-head-sender .avatar {
-    float: left;
-    margin-right: 10px;
+	float: left;
+	margin-right: 10px;
 }
 
 .email-head-sender .date {
-    float: right;
-    font-size: 12px;
+	float: right;
+	font-size: 12px;
 }
 
 .email-head-sender .avatar {
-    float: left;
-    margin-right: 10px;
+	float: left;
+	margin-right: 10px;
 }
 
 .email-head-sender .avatar img {
-    width: 36px;
+	width: 36px;
 }
 
-.email-head-sender .sender > a {
-    color: #000;
+.email-head-sender .sender>a {
+	color: #000;
 }
 
 .email-head-sender .sender span {
-    margin-right: 5px;
-    margin-left: 5px;
+	margin-right: 5px;
+	margin-left: 5px;
 }
 
 .email-head-sender .sender .actions {
-    display: inline-block;
-    position: relative;
+	display: inline-block;
+	position: relative;
 }
 
 .email-head-sender .sender .actions .icon {
-    color: #686868;
-    margin-left: 7px;
+	color: #686868;
+	margin-left: 7px;
 }
 
 .email-head-sender .sender .actions .icon svg {
-    width: 18px;
+	width: 18px;
 }
 
 .email-body {
-    background-color: transparent;
-    border-top: 1px solid #e8ebf1;
-    padding: 30px 28px;
+	background-color: transparent;
+	border-top: 1px solid #e8ebf1;
+	padding: 30px 28px;
 }
 
-@media (max-width: 767px) {
-    .email-body {
-        padding: 30px 10px;
-    }
+@media ( max-width : 767px) {
+	.email-body {
+		padding: 30px 10px;
+	}
 }
 
 .email-attachments {
-    background-color: transparent;
-    padding: 25px 28px 5px;
-    border-top: 1px solid #e8ebf1;
+	background-color: transparent;
+	padding: 25px 28px 5px;
+	border-top: 1px solid #e8ebf1;
 }
 
-@media (max-width: 767px) {
-    .email-attachments {
-        padding: 25px 10px 0;
-    }
+@media ( max-width : 767px) {
+	.email-attachments {
+		padding: 25px 10px 0;
+	}
 }
 
 .email-attachments .title {
-    display: block;
-    font-weight: 500;
+	display: block;
+	font-weight: 500;
 }
 
 .email-attachments .title span {
-    font-weight: 400;
+	font-weight: 400;
 }
 
 .email-attachments ul {
-    list-style: none;
-    margin: 15px 0 0;
-    padding: 0;
+	list-style: none;
+	margin: 15px 0 0;
+	padding: 0;
 }
 
-.email-attachments ul > li {
-    margin-bottom: 5px;
+.email-attachments ul>li {
+	margin-bottom: 5px;
 }
 
-.email-attachments ul > li:last-child {
-    margin-bottom: 0;
+.email-attachments ul>li:last-child {
+	margin-bottom: 0;
 }
 
-.email-attachments ul > li a {
-    color: #000;
+.email-attachments ul>li a {
+	color: #000;
 }
 
-.email-attachments ul > li a svg {
-    width: 18px;
-    color: #686868;
+.email-attachments ul>li a svg {
+	width: 18px;
+	color: #686868;
 }
 
-.email-attachments ul > li .icon {
-    color: #737373;
-    margin-right: 2px;
+.email-attachments ul>li .icon {
+	color: #737373;
+	margin-right: 2px;
 }
 
-.email-attachments ul > li span {
-    font-weight: 400;
+.email-attachments ul>li span {
+	font-weight: 400;
 }
 
 .rtl .email-head-subject .title a .icon {
-    margin-right: 0;
-    margin-left: 6px;
+	margin-right: 0;
+	margin-left: 6px;
 }
 
 .rtl .email-head-subject .icons .icon {
-    margin-left: 0;
-    margin-right: 12px;
+	margin-left: 0;
+	margin-right: 12px;
 }
 
 .rtl .email-head-sender .avatar {
-    margin-right: 0;
-    margin-left: 10px;
+	margin-right: 0;
+	margin-left: 10px;
 }
 
 .rtl .email-head-sender .sender .actions .icon {
-    margin-left: 0;
-    margin-right: 7px;
+	margin-left: 0;
+	margin-right: 7px;
 }
 
 .email-head-title {
-    padding: 15px;
-    border-bottom: 1px solid #e8ebf1;
-    font-weight: 400;
-    color: #3d405c;
-    font-size: .99rem;
+	padding: 15px;
+	border-bottom: 1px solid #e8ebf1;
+	font-weight: 400;
+	color: #3d405c;
+	font-size: .99rem;
 }
 
 .email-head-title .icon {
-    color: #696969;
-    margin-right: 12px;
-    vertical-align: middle;
-    line-height: 31px;
-    position: relative;
-    top: -1px;
-    float: left;
-    font-size: 1.538rem;
+	color: #696969;
+	margin-right: 12px;
+	vertical-align: middle;
+	line-height: 31px;
+	position: relative;
+	top: -1px;
+	float: left;
+	font-size: 1.538rem;
 }
 
-.email-compose-fields {
-    background-color: transparent;
-    padding: 20px 15px;
+.inbox-wrapper .email-content .email-list .email-list-item .email-list-detail .date
+	{
+	color: #000;
 }
 
-.email-compose-fields .select2-container--default .select2-selection--multiple .select2-selection__rendered {
-    margin: -2px -14px;
+.inbox-wrapper .email-content .email-list .email-list-item .email-list-detail .date .icon svg
+	{
+	width: 14px;
+	margin-right: 7px;
+	color: #3d405c;
 }
-
-.email-compose-fields .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
-    border-radius: 0;
-    background: #727cf5;
-    color: #ffffff;
-    margin-top: 0px;
-    padding: 4px 10px;
-    font-size: 13px;
-    border: 0;
-}
-
-.email-compose-fields .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice span {
-    color: #ffffff;
-}
-
-.email-compose-fields .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-search {
-    line-height: 15px;
-}
-
-.form-group.row {
-    margin-bottom: 0;
-    padding: 12px 0;
-}
-
-.form-group.row label {
-    white-space: nowrap;
-}
-
-.email-compose-fields label {
-    padding-top: 6px;
-}
-
-.email.editor {
-    background-color: transparent;
-}
-
-.email.editor .editor-statusbar {
-    display: none;
-}
-
-.email.action-send {
-    padding: 8px 0px 0;
-}
-
-.btn-space {
-    margin-right: 5px;
-    margin-bottom: 5px;
-}
-
-.breadcrumb {
-    margin: 0;
-    background-color: transparent;
-}
-
-.rtl .email-compose-fields .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
-    float: right;
-}
-
-.rtl .btn-space {
-    margin-right: 0;
-    margin-left: 5px;
-}
-.card {
-    box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
-    -webkit-box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
-    -moz-box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
-    -ms-box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
-}
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #f2f4f9;
-    border-radius: 0.25rem;
-}
-.badge {
-    padding: 6px 5px 3px;
-}
-.text-white {
-    color: #ffffff !important;
-}
-.font-weight-bold {
-    font-weight: 700 !important;
-}
-.float-right {
-    float: right !important;
-}
-.badge-danger-muted {
-    color: #212529;
-    background-color: #f77eb9;
-}
-    </style>
+</style>
 </head>
 <body>
-<div class="container">
-<div class="row inbox-wrapper">
-<div class="col-lg-12">
-<div class="card">
-<div class="card-body">
-<div class="row">
-<div class="col-lg-3 email-aside border-lg-right">
-<div class="aside-content">
-<div class="aside-header">
-<button class="navbar-toggle" data-target=".aside-nav" data-toggle="collapse" type="button"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></button><span class="title">Mail Service</span>
-<p class="description"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="debfb3b7bfb6bcabacaab1b09eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</a></p>
-</div>
-<div class="aside-compose"><a class="btn btn-primary btn-block" href="../../../demo_1/pages/email/compose.html">Compose Email</a></div>
-<div class="aside-nav collapse">
-<ul class="nav">
-<li class="active"><a href="../../../demo_1/pages/email/inbox.html"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg></span>Inbox<span class="badge badge-danger-muted text-white font-weight-bold float-right">2</span></a></li>
-<li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>Sent Mail</a></li>
-<li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></span>Trash</a></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-lg-9 email-content">
-<div class="email-head">
-<div class="email-head-subject">
-<div class="title d-flex align-items-center justify-content-between">
-<div class="d-flex align-items-center">
-<a class="active" href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star text-primary-muted"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span></a>
-<span>${email.email_subject }</span>
-</div>
-<div class="icons">
-<a href="#" class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share text-muted hover-primary-muted" data-toggle="tooltip" title="" data-original-title="Forward"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg></a>
-<a href="#" class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer text-muted" data-toggle="tooltip" title="" data-original-title="Print"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></a>
-<a href="#" class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash text-muted" data-toggle="tooltip" title="" data-original-title="Delete"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-</a>
-</div>
-</div>
-</div>
-<div class="email-head-sender d-flex align-items-center justify-content-between flex-wrap">
-<div class="d-flex align-items-center">
-<div class="avatar">
-<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar" class="rounded-circle user-avatar-md">
-</div>
-<div class="sender d-flex align-items-center">
-<a href="#">${email.sender_id }</a>
-<div class="actions dropdown">
-<a class="icon" href="#" data-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
-<div class="dropdown-menu" role="menu">
-<a class="dropdown-item" href="#">Mark as read</a>
-<a class="dropdown-item" href="#">Mark as unread</a>
-<a class="dropdown-item" href="#">Spam</a>
-<div class="dropdown-divider"></div>
-<a class="dropdown-item text-danger" href="#">Delete</a>
-</div>
-</div>
-</div>
-</div>
-<div class="date">${email.send_date }</div>
-</div>
-</div>
-<div class="email-body">
-<br>
-<p>${email.body }</p>
-<br>
-</div>
-<div class="email-attachments">
-<div class="title">Attachments <span>(3 files, 12,44 KB)</span></div>
-<ul>
-<li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg> Reference.zip <span class="text-muted tx-11">(5.10 MB)</span></a></li>
-<li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg> Instructions.zip <span class="text-muted tx-11">(3.15 MB)</span></a></li>
-<li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg> Team-list.pdf <span class="text-muted tx-11">(4.5 MB)</span></a></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript">
+	<link
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+		rel="stylesheet">
+	<div class="container">
+		<div class="wraper bootstrap snippets bootdeys bootdey">
+			<div class="page-title">
+				<h3 class="title">Inbox</h3>
+			</div>
+			<div class="row">
+
+				<div class="col-md-3">
+					<a href="#email-compose.html" class="btn btn-success btn-block">Compose</a>
+					<div class="panel panel-default p-0  m-t-20">
+						<div class="panel-body p-0">
+							<div class="list-group no-border mail-list">
+								<a href='/emailList2' class="list-group-item active"><i
+									class="fa fa-download m-r-5"></i>받은 메일함 <b>(8)</b></a>
+								<a href="#" class="list-group-item"><i
+									class="fa fa-paper-plane-o m-r-5"></i>Sent Mail</a> 
+								<a href="#" class="list-group-item"><i class="fa fa-trash-o m-r-5"></i>Trash<b>(354)</b></a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-9">
+					<div class="email-head">
+						<div class="email-head-subject">
+							<div
+								class="title d-flex align-items-center justify-content-between">
+								<div class="d-flex align-items-center">
+									<a class="active" href="#"><span class="icon"><svg
+												xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+												viewBox="0 0 24 24" fill="none" stroke="currentColor"
+												stroke-width="2" stroke-linecap="round"
+												stroke-linejoin="round"
+												class="feather feather-star text-primary-muted">
+												<polygon
+													points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span></a>
+									<span>${email.email_subject}</span>
+								</div>
+								<div class="icons">
+									<a href="#" class="icon"><svg
+											xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round"
+											class="feather feather-share text-muted hover-primary-muted"
+											data-toggle="tooltip" title="" data-original-title="Forward">
+											<path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+											<polyline points="16 6 12 2 8 6"></polyline>
+											<line x1="12" y1="2" x2="12" y2="15"></line></svg></a> <a href="#"
+										class="icon"><svg xmlns="http://www.w3.org/2000/svg"
+											width="24" height="24" viewBox="0 0 24 24" fill="none"
+											stroke="currentColor" stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round"
+											class="feather feather-printer text-muted"
+											data-toggle="tooltip" title="" data-original-title="Print">
+											<polyline points="6 9 6 2 18 2 18 9"></polyline>
+											<path
+												d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+											<rect x="6" y="14" width="12" height="8"></rect></svg></a> <a href="#"
+										class="icon"><svg xmlns="http://www.w3.org/2000/svg"
+											width="24" height="24" viewBox="0 0 24 24" fill="none"
+											stroke="currentColor" stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round"
+											class="feather feather-trash text-muted"
+											data-toggle="tooltip" title="" data-original-title="Delete">
+											<polyline points="3 6 5 6 21 6"></polyline>
+											<path
+												d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div
+							class="email-head-sender d-flex align-items-center justify-content-between flex-wrap">
+							<div class="d-flex align-items-center">
+								<div class="avatar">
+									<img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+										alt="Avatar" class="rounded-circle user-avatar-md">
+								</div>
+								<div class="sender d-flex align-items-center">
+									<a href="#">${email.sender_id }</a>
+								</div>
+							</div>
+							<div class="date">${email.send_date }</div>
+						</div>
+					</div>
+					<div class="email-body">
+						<p>${email.body}</p>
+						<br>
+					</div>
+					<c:if test="${not empty fileList }">
+						<div class="email-attachments">
+							<div class="title">
+								첨부파일 <span>(${fileCount} files, ${fileTotalSize})</span>
+							</div>
+							<ul>
+								<c:forEach items="${fileList }" var="file">
+									<li><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+												width="24" height="24" viewBox="0 0 24 24" fill="none"
+												stroke="currentColor" stroke-width="2" stroke-linecap="round"
+												stroke-linejoin="round" class="feather feather-file">
+												<path
+													d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+												<polyline points="13 2 13 9 20 9"></polyline></svg> ${file.file_subject } <span
+											class="text-muted tx-11">${file.file_size }</span></a></li>
+								</c:forEach>
+							</ul>
+						</div>
+					</c:if>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script
+		src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
 	
 </script>
 </body>

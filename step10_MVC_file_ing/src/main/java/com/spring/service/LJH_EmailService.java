@@ -33,4 +33,13 @@ public class LJH_EmailService {
 	public void updateIsRead(int emailId) {
 		mapper.updateIsRead(emailId);	
 	}
+
+	public void deleteEmailByEmailId(int emailId) {
+		mapper.deleteEmailByEmailId(emailId);
+		
+	}
+
+	public List<Email> getAllDeleteEmail() {
+		return mapper.getAllDeleteEmail();
+	}
 }
