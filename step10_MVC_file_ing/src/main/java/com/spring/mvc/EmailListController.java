@@ -28,4 +28,6 @@ public class EmailListController {
 		return "emailList";
 	}
 	
+
+	
 }

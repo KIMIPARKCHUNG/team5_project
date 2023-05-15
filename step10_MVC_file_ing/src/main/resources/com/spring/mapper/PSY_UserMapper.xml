@@ -20,7 +20,7 @@
  	</select>
    
    <!-- 로그인용 sql / email과 password가 일치해야 UserEmail 객체 반환 -->
-   <select id = "getUserByEmailaddressAndPassword" resultType = "com.spring.dto.UserEmail"> 
+   <select id = "getUserByEmail_addressAndPassword" resultType = "com.spring.dto.UserEmail"> 
  		SELECT
  			email_address, mem_name, password
  		FROM user_email
@@ -28,7 +28,7 @@
  	</select>
  	
  	<!-- EmailAddress로 UserEmail 객체 반환 -->
- 	<select id = "getUserByEmailaddress" resultType = "com.spring.dto.UserEmail"> 
+ 	<select id = "getUserByEmail_address" parameterType="string" resultType = "com.spring.dto.UserEmail"> 
  		SELECT
  			email_address, mem_name
  		FROM user_email
@@ -49,7 +49,7 @@
  		WHERE email_address = #{email_address}
  	</update>
  
- 	<delete id="deleteUserByUserEmail" parameterType="string">
+ 	<delete id="deleteUserByEmail_address" parameterType="string">
  		DELETE FROM user_email
  		WHERE email_address = #{email_address}
  	</delete>

@@ -17,9 +17,4 @@ public class UserEmail {
 	private String mem_name;
 	private String password;
 	
-	public UserEmail(String email_address,String mem_name) {
-		this.email_address = email_address;
-		this.mem_name = mem_name;
-	}
-	
 }
