@@ -46,7 +46,7 @@
             <div class="card px-5 py-5" id="form1">
                <form action="/login2" method="POST" enctype="multipart/form-data">               
                     <div class="forms-inputs mb-4">
-                    	<span>Email</span>
+                    	<span>Id</span>
                     	<input id = "email_address" name = "email_address" type = "text" class ="form-control">
                         <div class="invalid-feedback">유효한 이메일 주소를 기입해주세요.</div>
                     </div>              

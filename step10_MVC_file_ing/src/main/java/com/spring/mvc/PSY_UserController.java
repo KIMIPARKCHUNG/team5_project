@@ -32,32 +32,30 @@ public class PSY_UserController {
 	public String login(@RequestParam("email_address") String email_address,
 						@RequestParam("password") String password,
 						HttpSession session) {
-		System.out.println(email_address);
-		System.out.println(password);
-		
 		try {
-			UserEmail user = userService.getUserByEmailaddressAndPassword(email_address, password);
-			if(user != null) {
-				session.setAttribute("email_address", email_address);
-				return "redirect:/emailList2";
-			}
-			System.out.println(user);				
+			UserEmail user = userService.getUserByEmail_addressAndPassword(email_address, password);
+				if(user != null) {
+					System.out.println(user);
+					session.setAttribute("email_address", user.getEmail_address());
+					return "redirect:/emailList2";
+				}				
+				System.out.println(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "login2";
+		return "/resultView/fail";
 	}
 	
-//	//http://localhost:8083/logout (GET) : 로그아웃 메소드
-//	@GetMapping(value = "/logout")
-//	public String logout(HttpSession session) {
-//		
-//		if(session != null) {
-//			session.invalidate();
-//		}
-//		
-//		return "redirect:/login2";
-//	}
+	//http://localhost:8083/logout (GET) : 로그아웃 메소드
+	@GetMapping(value = "/logout")
+	public String logout(HttpSession session) {
+		
+		if(session != null) {
+			session.invalidate();
+		}
+		
+		return "redirect:/login2";
+	}
 	
 	
 	
@@ -69,12 +67,15 @@ public class PSY_UserController {
 	
 	//http://localhost:8083/signup (POST) : 회원가입 메소드
 	@PostMapping(value = "/signup")
-	public String UserSignup(@ModelAttribute UserEmail newUser) {
+	public String UserSignup(@RequestParam("email_address") String email_address,
+							 @RequestParam("mem_name") String mem_name,
+							 @RequestParam("password") String password) {
 		
-		System.out.println(newUser + "님이 가입 시도");
+		System.out.println(email_address + "님이 가입 시도");
 		boolean result = false;
+		UserEmail newUser = new UserEmail(email_address, mem_name, password);
 		
-		try {
+		try {			
 			result = userService.insertUser(newUser);
 			if(result) {
 				return "/resultView/success";
@@ -90,8 +91,9 @@ public class PSY_UserController {
 	@GetMapping(value = "user/{email_address}")
 	public UserEmail getUserByEmailaddress(@PathVariable String email_address) throws SQLException, Exception {
 		System.out.println("유저 객체 돌려받기" + email_address);
+		
 		UserEmail user = null;
-		user = userService.getUserByEmailaddress(email_address);
+		user = userService.getUserByEmail_address(email_address);
 		System.out.println(user);
 		
 		return user;
