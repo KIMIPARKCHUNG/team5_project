@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 
 
-<title>받은 메일함</title>
+<title>휴지통</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -173,12 +173,12 @@ body {
 					<div class="panel panel-default p-0  m-t-20">
 						<div class="panel-body p-0">
 							<div class="list-group no-border mail-list">
-								<a href="#" class="list-group-item active"><i
+								<a href="/emailList2" class="list-group-item"><i
 									class="fa fa-download m-r-5"></i> 받은 메일함 <b id='readCount'> (${isReadCount})</b></a>
 							    <a href="#" class="list-group-item"><i
 									class="fa fa-paper-plane-o m-r-5"></i>Sent Mail</a> 
-								<a href="/deleteList" class="list-group-item"><i
-								   class="fa fa-trash-o m-r-5"></i> 휴지통 <b>(354)</b></a>
+								<a href="#" class="list-group-item active"><i
+									class="fa fa-trash-o m-r-5"></i> 휴지통 <b>(354)</b></a>
 							</div>
 						</div>
 					</div>
