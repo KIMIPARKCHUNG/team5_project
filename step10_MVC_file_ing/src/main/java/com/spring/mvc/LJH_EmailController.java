@@ -119,5 +119,16 @@ public class LJH_EmailController {
 		model.addAttribute("emailList", emailList);
 		return "deleteList";
 	}
+	
+	@RequestMapping(value="/hardDelete", method=RequestMethod.POST)
+	public String hardDeleteEmailByEmailId(@RequestParam(value="deleteCheck", required=false) List<String> checkEmailId) {
+		if(checkEmailId==null) {
+			return "redirect:/deleteList";
+		}
+		for(int i=0; i<checkEmailId.size(); i++) {
+			emailService.hardDeleteEmailByEmailId(Integer.parseInt(checkEmailId.get(i)));
+		}
+		return "redirect:/deleteList";
+	}
 
 }

@@ -68,4 +68,10 @@
  		SET is_delete = 'T'
  		WHERE email_id = #{emailId}
  	</update>
+ 	
+ 	<!-- 이메일 영구 삭제 -->
+ 	<delete id="hardDeleteEmailByEmailId" parameterType="_int">
+ 		DELETE FROM email
+ 		WHERE email_id = #{emailId}
+ 	</delete>
  </mapper>

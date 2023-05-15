@@ -45,9 +45,9 @@
                <form action="/signup" method="POST" enctype="multipart/form-data">
                 
                     <div class="forms-inputs mb-4">
-                    	<span>Email</span>
+                    	<span>Id</span>
                     	<input id = "email_address" name = "email_address" type = "text" class ="form-control">
-                        <span id="emailMsg" style="font-size:8pt;"></span>
+                        <span id="mem_idMsg" style="font-size:8pt;"></span>
                     </div>
                     
                     <div class="forms-inputs mb-4">

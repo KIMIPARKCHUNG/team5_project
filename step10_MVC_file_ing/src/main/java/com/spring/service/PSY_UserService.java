@@ -30,9 +30,9 @@ public class PSY_UserService {
 	}
 	
 	// getUserByEmailaddressAndPassword - UserEmail
-	public UserEmail getUserByEmailaddressAndPassword(String email_address, String password) throws SQLException, Exception {
+	public UserEmail getUserByEmail_addressAndPassword(String email_address, String password) throws SQLException, Exception {
 		
-		UserEmail user = mapper.getUserByEmailaddressAndPassword(email_address, password);
+		UserEmail user = mapper.getUserByEmail_addressAndPassword(email_address, password);
 		
 		if(user == null) {
 			System.out.println("로그인 에러");
@@ -41,11 +41,11 @@ public class PSY_UserService {
 		return user;
 	}
 
-	// getUserByEmailaddress - UserEmail
-	public UserEmail getUserByEmailaddress(String email_address) throws SQLException, Exception {
+	// getUserByEmail_address - UserEmail
+	public UserEmail getUserByEmail_address(String email_address) throws SQLException, Exception {
 		
-		UserEmail user = mapper.getUserByEmailaddress(email_address);
-		
+		UserEmail user = mapper.getUserByEmail_address(email_address);
+		System.out.println(user + "-service");
 		if(user == null) {
 			System.out.println("존재하지 않는 메일 주소");
 		}

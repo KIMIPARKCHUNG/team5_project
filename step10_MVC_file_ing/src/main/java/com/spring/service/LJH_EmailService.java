@@ -45,4 +45,9 @@ public class LJH_EmailService {
 	public List<Email> getAllDeleteEmail(String email_address) {
 		return mapper.getAllDeleteEmail(email_address);
 	}
+
+	public void hardDeleteEmailByEmailId(int emailId) {
+		mapper.hardDeleteEmailByEmailId(emailId);
+		
+	}
 }
