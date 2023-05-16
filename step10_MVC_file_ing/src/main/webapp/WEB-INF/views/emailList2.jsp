@@ -164,21 +164,21 @@ body {
 	<div class="container">
 		<div class="wraper bootstrap snippets bootdeys bootdey">
 			<div class="page-title">
-				<h3 class="title">Inbox</h3>
+				<h3 class="title">받은 메일함</h3>
 			</div>
 			<div class="row">
 
 				<div class="col-md-3">
-					<a href="#email-compose.html" class="btn btn-success btn-block">Compose</a>
+					<a href="/emailWrite" class="btn btn-success btn-block">메일 보내기</a>
 					<div class="panel panel-default p-0  m-t-20">
 						<div class="panel-body p-0">
 							<div class="list-group no-border mail-list">
 								<a href="/emailList2" class="list-group-item active"><i
 									class="fa fa-download m-r-5"></i> 받은 메일함 <b id='readCount'> (${isReadCount})</b></a>
 							    <a href="/emailSendList" class="list-group-item"><i
-									class="fa fa-paper-plane-o m-r-5"></i>Sent Mail</a> 
+									class="fa fa-paper-plane-o m-r-5"></i> 보낸 메일함</a> 
 								<a href="/deleteList" class="list-group-item"><i
-								   class="fa fa-trash-o m-r-5"></i> 휴지통 <b>(354)</b></a>
+								   class="fa fa-trash-o m-r-5"></i> 휴지통 <b></b></a>
 							</div>
 						</div>
 					</div>
@@ -190,51 +190,9 @@ body {
 						<div class="col-lg-12">
 							<div class="btn-toolbar" role="toolbar">
 								<div class="btn-group">
-									<button type="button" class="btn btn-success">
-										<i class="fa fa-inbox"></i>
-									</button>
-									<button type="button" class="btn btn-success">
-										<i class="fa fa-exclamation-circle"></i>
-									</button>
 									<button type="submit" class="btn btn-success">
 										<i class="fa fa-trash-o"></i>
 									</button>
-								</div>
-								<div class="btn-group">
-									<button type="button" class="btn btn-success dropdown-toggle"
-										data-toggle="dropdown" aria-expanded="false">
-										<i class="fa fa-folder"></i> <b class="caret"></b>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="#fakelink">Action</a></li>
-										<li><a href="#fakelink">Another action</a></li>
-										<li><a href="#fakelink">Something else here</a></li>
-										<li class="divider"></li>
-										<li><a href="#fakelink">Separated link</a></li>
-									</ul>
-								</div>
-								<div class="btn-group">
-									<button type="button" class="btn btn-success dropdown-toggle"
-										data-toggle="dropdown" aria-expanded="false">
-										<i class="fa fa-tag"></i> <b class="caret"></b>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="#fakelink">Action</a></li>
-										<li><a href="#fakelink">Another action</a></li>
-										<li><a href="#fakelink">Something else here</a></li>
-										<li class="divider"></li>
-										<li><a href="#fakelink">Separated link</a></li>
-									</ul>
-								</div>
-								<div class="btn-group">
-									<button type="button" class="btn btn-success dropdown-toggle"
-										data-toggle="dropdown" aria-expanded="false">
-										More <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu">
-										<li><a href="#fakelink">Dropdown link</a></li>
-										<li><a href="#fakelink">Dropdown link</a></li>
-									</ul>
 								</div>
 							</div>
 						</div>
@@ -257,7 +215,14 @@ body {
 													<td><a href="emailRead3/${email.email_id}">${email.email_subject }</a></td>
 												</c:otherwise>
 											</c:choose>
-											<td><i class="fa fa-paperclip" id="clip"></i></td>
+											<c:choose>
+												<c:when test="${fn:contains(email.file_exist,'F')}">
+													<td></td>
+												</c:when>
+												<c:otherwise>
+													<td><i class="fa fa-paperclip" id="clip"></i></td>
+												</c:otherwise>
+											</c:choose>	
 											<td class="text-right">${email.send_date }</td>
 										</tr>
 									</c:forEach>

@@ -24,7 +24,7 @@
 							#{body},
 							'F',
 							'F',
-							'F',
+							#{file_exist},
 							TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
  	</insert>
 

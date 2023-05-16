@@ -378,20 +378,20 @@ body {
 <div class="container">
 		<div class="wraper bootstrap snippets bootdeys bootdey">
 			<div class="page-title">
-				<h3 class="title">Inbox</h3>
+				<h3 class="title">${email.email_subject}</h3>
 			</div>
 			<div class="row">
 
 				<div class="col-md-3">
-					<a href="#email-compose.html" class="btn btn-success btn-block">Compose</a>
+					<a href="/emailWrite" class="btn btn-success btn-block">메일 보내기</a>
 					<div class="panel panel-default p-0  m-t-20">
 						<div class="panel-body p-0">
 							<div class="list-group no-border mail-list">
 								<a href='/emailList2' class="list-group-item active"><i
-									class="fa fa-download m-r-5"></i>받은 메일함 <b>(8)</b></a>
+									class="fa fa-download m-r-5"></i> 받은 메일함 <b></b></a>
 								<a href="/emailSendList" class="list-group-item"><i
-									class="fa fa-paper-plane-o m-r-5"></i>Sent Mail</a> 
-								<a href="/deleteList" class="list-group-item"><i class="fa fa-trash-o m-r-5"></i>Trash<b>(354)</b></a>
+									class="fa fa-paper-plane-o m-r-5"></i> 보낸 메일함</a> 
+								<a href="/deleteList" class="list-group-item"><i class="fa fa-trash-o m-r-5"></i> 휴지통<b></b></a>
 							</div>
 						</div>
 					</div>

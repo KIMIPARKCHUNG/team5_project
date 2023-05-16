@@ -55,13 +55,19 @@ public class KSH_EmailWriteController {
 	String view = "error";
 	String email_address = (String) session.getAttribute("email_address");
 	newEmail.setSender_id(email_address);
+	char fileexist = 'F';
+	if(file.getOriginalFilename() != "") {
+		fileexist = 'T';
+	}
+	newEmail.setFile_exist(fileexist);
 	//	boolean fileResult = false;
 		boolean emailResult = false;
 		try {
 			emailResult = emailWriteService.insertEmail(newEmail);
 		//	fileResult = attachmentFileService.insertAttachmentFile(file, newEmail.getEmail_id());
 			System.out.println(newEmail);
-			attachmentFileService.insertEmailFile(file, newEmail.getEmail_id());
+			if(file.getOriginalFilename() != "")
+				attachmentFileService.insertEmailFile(file, newEmail.getEmail_id());
 		 if(emailResult) {
 				// version 1
 ////			view = "main";

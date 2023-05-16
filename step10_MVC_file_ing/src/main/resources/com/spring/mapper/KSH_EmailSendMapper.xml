@@ -15,10 +15,11 @@
 			body,
 			is_read,
 			is_delete,
+			file_exist,
 			send_date
 		FROM email
 		WHERE is_delete = 'F' and sender_id = #{email_address}
-		ORDER BY send_date DESC 
+		ORDER BY email_id DESC 
  	</select>
  	
  	<!-- 메일 상세 정보 출력 -->
@@ -31,6 +32,7 @@
 			body,
 			is_read,
 			is_delete,
+			file_exist,
 			send_date
 		FROM email
 		where email_id = #{emailId} 
