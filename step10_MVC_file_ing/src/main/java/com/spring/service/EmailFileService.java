@@ -74,11 +74,8 @@ public class EmailFileService {
 
 	public List<EmailFile> getEmailFileByEmailId(int email_id) throws SQLException,Exception {
 		List<EmailFile> emailFile = null;
-			emailFile =	emailFileMapper.getEmailFileByEmailId(email_id);
+			emailFile =	emailFileMapper.getEmailFileByEmailId(email_id).orElseThrow(Exception::new);
 	System.out.println(emailFile);
-	if(emailFile == null) {
-		throw new Exception("존재하지 않는 파일");
-		}
 		
 		return emailFile;
 	}
