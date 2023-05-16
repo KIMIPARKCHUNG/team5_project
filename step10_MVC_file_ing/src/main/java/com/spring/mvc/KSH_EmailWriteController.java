@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.dto.Dept;
+
 import com.spring.dto.Email;
 import com.spring.dto.EmailFile;
 import com.spring.service.EmailFileService;

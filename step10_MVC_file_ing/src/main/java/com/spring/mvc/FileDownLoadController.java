@@ -22,10 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.dto.AttachmentFile;
-import com.spring.dto.Dept;
+
 import com.spring.dto.EmailFile;
-import com.spring.service.AttachmentFileService;
+
 import com.spring.service.EmailFileService;
 
 @Controller

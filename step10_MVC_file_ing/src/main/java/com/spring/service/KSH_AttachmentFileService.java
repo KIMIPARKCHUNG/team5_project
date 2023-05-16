@@ -12,11 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.dto.AttachmentFile;
-import com.spring.dto.Dept;
+
 import com.spring.dto.KSH_AttachmentFile;
-import com.spring.mapper.AttachmentFileMapper;
-import com.spring.mapper.DeptMapper;
+
+
 import com.spring.mapper.KSH_AttachmentFileMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,16 +27,7 @@ public class KSH_AttachmentFileService {
 	@Autowired
 	KSH_AttachmentFileMapper attachmentFileMapper;
 	
-	// 객체
-	public AttachmentFile getAttachmentFileByFileNo(int fileNo) throws SQLException, Exception { 
-		AttachmentFile attachmentFile = attachmentFileMapper.getAttachmentFileByFileNo(fileNo);
-		
-		if(attachmentFile == null) {
-			throw new Exception();
-		}
-		
-		return attachmentFile;
-	}
+
 	
 	// insert - 
 	public boolean insertAttachmentFile(MultipartFile file, int email_id) throws SQLException, Exception {

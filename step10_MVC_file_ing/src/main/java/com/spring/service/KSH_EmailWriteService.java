@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.dto.Dept;
+
 import com.spring.dto.Email;
 import com.spring.dto.EmailFile;
 import com.spring.mapper.KSH_EmailWriteMapper;

@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.dto.AttachmentFile;
+
 import com.spring.dto.EmailFile;
 
 

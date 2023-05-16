@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.dto.Emp;
-import com.spring.service.EmpService;
+
+
 
 @Controller
 public class EmailListController {
 	
-	@Autowired
-	EmpService empService;
+
 	
 	@RequestMapping(value = "/emailList", method = RequestMethod.GET)
 	public String emailList() {

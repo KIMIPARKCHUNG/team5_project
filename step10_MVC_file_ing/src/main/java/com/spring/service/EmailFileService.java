@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.dto.AttachmentFile;
+
 import com.spring.dto.EmailFile;
-import com.spring.mapper.AttachmentFileMapper;
+
 import com.spring.mapper.EmailFileMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class EmailFileService {
 	
 		
-		@Autowired
-		AttachmentFileMapper attachmentFileMapper;
+
 		
 		@Autowired
 		EmailFileMapper emailFileMapper;
